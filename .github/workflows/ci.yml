@@ -5,46 +5,46 @@ on:
       - main
   pull_request:
   
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm install
-      - run: npm test
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
 # jobs:
-#   main:
+#   build:
 #     runs-on: ubuntu-latest
 #     steps:
-#       - uses: actions/checkout@v2
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
 #         with:
-#           fetch-depth: 0
-#       - uses: nrwl/nx-set-shas@v3
-#       - run: npm install --package-lock-only
-#       - run: npm ci
+#           node-version: 18
+#       - run: npm install
+#       - run: npm test
 
-#       - run: npx nx format:check
-#       - run: npx nx affected -t lint --parallel=3
-#       - run: npx nx affected -t test --parallel=3 --configuration=ci
-#       - run: npx nx affected -t build --parallel=3
+#   publish-gpr:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     permissions:
+#       packages: write
+#       contents: read
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#           registry-url: https://npm.pkg.github.com/
+#       - run: npm ci
+#       - run: npm publish
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
+      - run: npm install --package-lock-only
+      - run: npm ci
+
+      - run: npx nx format:check
+      - run: npx nx affected -t lint --parallel=3
+      - run: npx nx affected -t test --parallel=3 --configuration=ci
+      - run: npx nx affected -t build --parallel=3

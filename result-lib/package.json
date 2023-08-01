@@ -1,9 +1,8 @@
 {
-  "name": "@iv/result",
+  "name": "iv-result",
   "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
-  "private": false,
+  "scripts": {},  
   "dependencies": {},
   "devDependencies": {
     "nx": "16.5.5"

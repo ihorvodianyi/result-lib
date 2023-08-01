@@ -1,4 +1,4 @@
-abstract class TResultBase {
+class ResultBase {
 
     private _state: boolean;
 
@@ -14,18 +14,18 @@ abstract class TResultBase {
     }
 }
 
-export class TResult extends TResultBase {
+export class Result extends ResultBase {
 
-    public static ok(): TResult {
-        return new TResult(true);
+    public static ok(): Result {
+        return new Result(true);
     }
 
-    public static fail(): TResult {
-        return new TResult(false);
+    public static fail(): Result {
+        return new Result(false);
     }
 }
 
-export class TResultValue<TValue> extends TResultBase {
+export class ResultValue<TValue> extends ResultBase {
 
     private _value?: TValue;
     public get value(): TValue {
@@ -40,11 +40,11 @@ export class TResultValue<TValue> extends TResultBase {
         this._value = value;
     }
 
-    public static ok<TValue>(value: TValue): TResultValue<TValue> {
-        return new TResultValue<TValue>(true, value);
+    public static ok<TValue>(value: TValue): ResultValue<TValue> {
+        return new ResultValue<TValue>(true, value);
     }
 
-    public static fail<TValue>(): TResultValue<TValue> {
-        return new TResultValue<TValue>(false);
+    public static fail<TValue>(): ResultValue<TValue> {
+        return new ResultValue<TValue>(false);
     }
 }

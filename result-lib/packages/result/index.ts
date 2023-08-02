@@ -32,15 +32,12 @@ export class TResult extends TResultBase {
 
 export class TResultValue<TValue> extends TResultBase {
 
-    private _value?: TValue;
-    public get value(): TValue {
-        if (this.isFailed()) {
-            throw new Error("Can't retrieve the value from a failed result.");
-        }
-        return this._value!;
+    private _value: TValue | undefined;
+    public get value(): TValue | undefined {
+        return this._value;
     }
 
-    constructor(state: ResultState, value?: TValue) {
+    constructor(state: ResultState, value: TValue | undefined) {
         super(state);
         this._value = value;
     }
@@ -50,6 +47,6 @@ export class TResultValue<TValue> extends TResultBase {
     }
 
     public static fail<TValue>(): TResultValue<TValue> {
-        return new TResultValue<TValue>(ResultState.FAIL);
+        return new TResultValue<TValue>(ResultState.FAIL, undefined);
     }
 }

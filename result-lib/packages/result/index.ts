@@ -19,18 +19,6 @@ export abstract class ResultBase {
     }
 }
 
-export abstract class ResultCodeBase<TCode> extends ResultBase {
-
-    private _code: TCode;
-
-    protected constructor(code: TCode, state: ResultState) {
-        super(state);
-        this._code = code;
-    }
-
-}
-
-
 export class Result extends ResultBase {
 
     private constructor(state: ResultState) {
@@ -43,7 +31,7 @@ export class Result extends ResultBase {
 
     public static fail(): Result {
         return new Result(ResultState.FAIL);
-    }
+    }    
 }
 
 export class ResultValue<TValue> extends ResultBase {

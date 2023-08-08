@@ -2,8 +2,10 @@
   "name": "result",
   "version": "0.0.4",
   "main": "dist/index.js",
-  "devDependencies": {},
   "scripts": {
     "build": "tsc index.ts --outDir dist"
+  },
+  "dependencies": {
+    "result": "file:dist/result-0.0.4.tgz"
   }
 }
